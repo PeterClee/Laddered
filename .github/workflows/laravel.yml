@@ -1,0 +1,40 @@
+name: Laravel
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  laravel-tests:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: shivammathur/setup-php@b7d1d9c9a92d8d8463ce36d7f60da34d461724f8
+      with:
+        php-version: '8.0'
+    - uses: actions/checkout@v2
+    - name: build and test
+      env:
+        DB_CONNECTION: sqlite
+        DB_DATABASE: database/database.sqlite
+      run: |
+        php -r "file_exists('.env') || copy('.env.example', '.env');"
+        composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+        php artisan key:generate
+        chmod -R 777 storage bootstrap/cache
+        mkdir -p database
+        touch database/database.sqlite
+        vendor/bin/phpunit
+
+  mix-builds:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/setup-node@v2.1.5
+      with:
+        node-version: '15.3.0'
+    - uses: actions/checkout@v2
+    - name: install dependencies
+      run: |
+        npm install
+        npm run dev
