@@ -14,8 +14,9 @@ class CreateUserLadder extends Migration
     public function up()
     {
         Schema::create('user_ladder', function (Blueprint $table) {
-            $table->foreign('ladder_id')->references('id')->on('ladder');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->id();
+            $table->foreign('id')->references('id')->on('ladder');
+            $table->foreign('id')->references('id')->on('users_table');
             $table->timestamps();
         });
     }

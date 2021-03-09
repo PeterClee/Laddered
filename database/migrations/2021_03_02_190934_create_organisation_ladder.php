@@ -14,8 +14,9 @@ class CreateOrganisationLadder extends Migration
     public function up()
     {
         Schema::create('organisation_ladder', function (Blueprint $table) {
-            $table->foreign('ladder_id')->references('id')->on('ladder');
-            $table->foreign('organisation_id')->references('id')->on('organisation');
+            $table->id();
+            $table->foreign('id')->references('id')->on('ladder');
+            $table->foreign('id')->references('id')->on('organisation');
             $table->boolean('status');
             $table->timestamps();
         });

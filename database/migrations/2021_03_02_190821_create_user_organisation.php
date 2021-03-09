@@ -15,8 +15,8 @@ class CreateUserOrganisation extends Migration
     {
         Schema::create('user_organisation', function (Blueprint $table) {
             $table->id();
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('organisation_id')->references('id')->on('organisation');
+            $table->foreign('id')->references('id')->on('users');
+            $table->foreign('id')->references('id')->on('organisation');
             $table->timestamps();
         });
     }
