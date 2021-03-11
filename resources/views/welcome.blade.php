@@ -12,6 +12,7 @@
     <title>{{env('APP_NAME')}}</title>
 </head>
 <body>
+<x-nav-link class=""/>
     <div id="app">
         <app></app>
     </div>

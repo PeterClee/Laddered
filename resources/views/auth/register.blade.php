@@ -1,8 +1,10 @@
 <x-guest-layout>
+<x-nav-link class=""/>
+
     <x-auth-card>
         <x-slot name="logo">
             <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+                <x-application-logo class="w-1 h-1" />
             </a>
         </x-slot>
 
